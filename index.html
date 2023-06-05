@@ -12,16 +12,21 @@
     <div id="root">Not rendered</div>
 
     <!-- Injectd React and ReactDOM using CDN -->
-    <script
+
+    <!-- Why not using cdn to import react??
+    As cdn import a version of react, lets say 18, now what if the react version changes to 19, then we have to manually update the version
+    by changing the cdn link -->
+
+    <!-- <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
     ></script>
     <script
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
+    ></script> -->
 
     <!-- Injected external js file -->
-    <script src="App.js"></script>
+    <script type = "module" src="App.js"></script>
   </body>
 </html>
