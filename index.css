@@ -1,3 +1,37 @@
-#container{
-    background-color: aqua;
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid red;
+    height: 80px;
+    align-items: center;
+}
+.nav-items > ul{
+    list-style-type: none;
+    display: flex;
+}
+.nav-items > ul > li{
+    padding: 10px;
+
+}
+.logo{
+    width: 80px;
+}
+
+.card{
+    width:200px;
+    border: 2px solid black;
+    margin: 20px;
+}
+.card > img{
+    width: 100%;
+}
+
+.restaurant-list{
+    display: flex;
+    flex-wrap: wrap;
 }
