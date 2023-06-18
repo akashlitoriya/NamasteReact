@@ -5,7 +5,9 @@ import { Title } from "./Components/Header"; /*If we don't import this our app w
 we want to use it separately then we need to import it */
 import Body from "./Components/Body";
 import Footer from "./Components/Footer"
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { About } from "./Components/About";
+import { Error } from "./Components/ErrorPage";
 /*
 
 HTML using React.createElement() --> Replaced by JSX
@@ -64,7 +66,20 @@ const AppLayout = ()=>{
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout></AppLayout>,
+    errorElement: <Error />
+  },
+  {
+    path: "/about",
+    element: <About></About>
+  }
+])
+
+
   // create root using createRoot
   const root = ReactDOM.createRoot(document.getElementById("root"));
   // passing react element inside root
-  root.render(<AppLayout />);
+  root.render(<RouterProvider router = {appRouter} />);
