@@ -5,9 +5,11 @@ import { Title } from "./Components/Header"; /*If we don't import this our app w
 we want to use it separately then we need to import it */
 import Body from "./Components/Body";
 import Footer from "./Components/Footer"
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { About } from "./Components/About";
 import { Error } from "./Components/ErrorPage";
+import { Contact } from "./Components/Contact";
+import RestaurantMenu from "./Components/RestaurantMenu";
 /*
 
 HTML using React.createElement() --> Replaced by JSX
@@ -59,10 +61,10 @@ const HeaderComponent = () => {
 const AppLayout = ()=>{
   return (
     <>
-    <HeaderComponent />
-    <Body />
-    <Footer /></>
-    
+      <HeaderComponent />
+      <Outlet />
+      <Footer />
+    </>
   );
 };
 
@@ -70,12 +72,27 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout></AppLayout>,
-    errorElement: <Error />
+    errorElement: <Error />,
+    children : [
+      {
+        path:"/",
+        element: <Body />
+      },
+      {
+        path:"/about",
+        element: <About />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
+      },
+    ]
   },
-  {
-    path: "/about",
-    element: <About></About>
-  }
+  
 ])
 
 
