@@ -10,6 +10,7 @@ import { About } from "./Components/About";
 import { Error } from "./Components/ErrorPage";
 import { Contact } from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import { Profile } from "./Components/Profile";
 /*
 
 HTML using React.createElement() --> Replaced by JSX
@@ -80,7 +81,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path:"/about",
-        element: <About />
+        element: <About />,
+        children : [{
+          path: "profile", //Do not use slash here, because it means you are providing path relative to root
+          element : <Profile />
+        }]
+
       },
       {
         path: "/contact",
