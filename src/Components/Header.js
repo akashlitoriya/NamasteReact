@@ -24,6 +24,7 @@ export const Title = ()=>{
             <li><Link to = "/about">About</Link></li>
             <li><Link to = "/contact">Contact</Link></li>
             <li><Link to = "/">Cart</Link></li>
+            <li><Link to = "/instamart">InstaMart</Link></li>
           </ul>
         </div>
       </div>

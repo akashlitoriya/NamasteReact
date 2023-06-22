@@ -4,13 +4,9 @@ import { useState, useEffect } from "react";
 import { swiggy_api_URL } from "../config";
 import { ShimmerUI } from "./ShimmerUI";
 import { Link } from "react-router-dom";
+import { filterData } from "../util/helper";
+import useOnline from "../util/useOnline";
 
-function filterData(searchText, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant?.data?.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-  return filterData;
-}
 
 
 
@@ -53,6 +49,12 @@ const BodyComponent= () =>{
     }
   };
 
+  const isOnline = useOnline();
+  if(!isOnline){
+    return (
+      <h1>Offine, check your internet connection</h1>
+    )
+  }
   // if allRestaurants is empty don't render restaurants cards
   if (!allRestaurants) return null;
 

@@ -11,6 +11,13 @@ import { Error } from "./Components/ErrorPage";
 import { Contact } from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import { Profile } from "./Components/Profile";
+import { lazy, Suspense} from "react";
+import { ShimmerUI } from "./Components/ShimmerUI";
+
+const InstaMart = lazy(() => 
+  import("./Components/InstaMart")
+)
+
 /*
 
 HTML using React.createElement() --> Replaced by JSX
@@ -95,7 +102,11 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenu />,
-      },
+      }, 
+      {
+        path: "/instamart",
+        element: <Suspense fallback = {<ShimmerUI />}><InstaMart /></Suspense>
+      }
     ]
   },
   
