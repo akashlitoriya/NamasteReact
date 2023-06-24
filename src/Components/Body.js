@@ -60,17 +60,17 @@ const BodyComponent= () =>{
 
   return (
     <>
-      <div className="search-container">
+      <div className="flex justify-center m-6">
         <input
           type="text"
-          className="search-input"
+          className="search-input border-2 px-5 py-2 rounded-l-full "
           placeholder="Search a restaurant you want..."
           value={searchText}
           // update the state variable searchText when we typing in input box
           onChange={(e) => setSearchText(e.target.value)}
         ></input>
         <button
-          className="search-btn"
+          className="rounded-r-full border-2 px-5 py-2 bg-indigo-800 text-white"
           onClick={() => {
             // user click on button searchData function is called
             searchData(searchText, allRestaurants);
@@ -85,7 +85,7 @@ const BodyComponent= () =>{
       {allRestaurants?.length === 0 ? (
         <ShimmerUI />
       ) : (
-        <div className="restaurant-list">
+        <div className="flex flex-wrap">
           {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
           {filteredRestaurants.map((restaurant) => {
             return (

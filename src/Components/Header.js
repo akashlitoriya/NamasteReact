@@ -3,28 +3,29 @@ Named exported Title component
 Imported as 
 import {Title} from ".Component/Header.js"
 */
+
 import { Link } from "react-router-dom";
 export const Title = ()=>{
     return(
       <img
-        className="logo"
-        alt="logo"
-        src="https://page.line.me/emi1148b/profile/img"
+        className="h-20 p-5"
+        alt="This is a logo"
+        src=""
       />
     );
     
   };
   const HeaderComponent = ()=>{
     return (
-      <div className="header">
+      <div className="flex justify-between items-center h-28 bg-indigo-300">
         <Title />
         <div className="nav-items">
-          <ul>
-            <li><Link to = "/">Home</Link></li>
-            <li><Link to = "/about">About</Link></li>
-            <li><Link to = "/contact">Contact</Link></li>
-            <li><Link to = "/">Cart</Link></li>
-            <li><Link to = "/instamart">InstaMart</Link></li>
+          <ul className ="flex py-7">
+            <li className="px-5"><Link to = "/">Home</Link></li>
+            <li className="px-5"><Link to = "/about">About</Link></li>
+            <li className="px-5"><Link to = "/contact">Contact</Link></li>
+            <li className="px-5"><Link to = "/">Cart</Link></li>
+            <li className="px-5"><Link to = "/instamart">InstaMart</Link></li>
           </ul>
         </div>
       </div>
