@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import  ReactDOM  from "react-dom/client";
 import HeaderComponent from "./Components/Header";
 import { Title } from "./Components/Header"; /*If we don't import this our app will work as Title is used in HeaderComponent, but if 
@@ -13,6 +13,7 @@ import RestaurantMenu from "./Components/RestaurantMenu";
 import { Profile } from "./Components/Profile";
 import { lazy, Suspense} from "react";
 import { ShimmerUI } from "./Components/ShimmerUI";
+import UserContext from "./util/UserContext";
 
 const InstaMart = lazy(() => 
   import("./Components/InstaMart")
@@ -67,12 +68,21 @@ const HeaderComponent = () => {
 };
 */
 const AppLayout = ()=>{
+  const [user, setUser] = useState({
+    name: "Akash Litoriya",
+    email: "akashlitoriya8@gmail.com"
+  });
+
   return (
-    <>
+    <UserContext.Provider value = {{
+      user: user,
+      setUser: setUser
+    }
+    }>
       <HeaderComponent />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 

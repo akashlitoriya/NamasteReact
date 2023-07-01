@@ -3,9 +3,12 @@ Named exported Title component
 Imported as 
 import {Title} from ".Component/Header.js"
 */
+import UserContext from "../util/UserContext";
+import { useContext, useState } from "react"
 
 import { Link } from "react-router-dom";
 export const Title = ()=>{
+  
     return(
       <img
         className="h-20 p-5"
@@ -16,6 +19,7 @@ export const Title = ()=>{
     
   };
   const HeaderComponent = ()=>{
+    const { user } = useContext(UserContext);
     return (
       <div className="flex justify-between items-center h-28 bg-indigo-300">
         <Title />
@@ -27,6 +31,9 @@ export const Title = ()=>{
             <li className="px-5"><Link to = "/">Cart</Link></li>
             <li className="px-5"><Link to = "/instamart">InstaMart</Link></li>
           </ul>
+        </div>
+        <div>
+            <h1>{user.name}</h1>
         </div>
       </div>
     );
