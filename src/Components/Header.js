@@ -5,8 +5,9 @@ import {Title} from ".Component/Header.js"
 */
 import UserContext from "../util/UserContext";
 import { useContext, useState } from "react"
-
 import { Link } from "react-router-dom";
+import store from "../util/store";
+import { useSelector } from "react-redux";
 export const Title = ()=>{
   
     return(
@@ -20,6 +21,8 @@ export const Title = ()=>{
   };
   const HeaderComponent = ()=>{
     const { user } = useContext(UserContext);
+    const cartItems = useSelector(store => store.cart.items);
+    console.log(cartItems);
     return (
       <div className="flex justify-between items-center h-28 bg-indigo-300">
         <Title />
@@ -28,8 +31,8 @@ export const Title = ()=>{
             <li className="px-5"><Link to = "/">Home</Link></li>
             <li className="px-5"><Link to = "/about">About</Link></li>
             <li className="px-5"><Link to = "/contact">Contact</Link></li>
-            <li className="px-5"><Link to = "/">Cart</Link></li>
             <li className="px-5"><Link to = "/instamart">InstaMart</Link></li>
+            <li className="px-5"><Link to = "/cart">Cart-{cartItems.length}</Link></li>
           </ul>
         </div>
         <div>

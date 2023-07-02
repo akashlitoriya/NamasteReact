@@ -10,6 +10,7 @@ const useRestaurant = (resId) =>{
         const restaurantData = json?.data?.cards?.map(x => x.card)?.
                                find(x => x && x.card['@type'] === RESTAURANT_TYPE_KEY)?.card?.info || null;
         setRestaurant(restaurantData);
+        
     }
 
     useEffect(() => {

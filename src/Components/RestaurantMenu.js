@@ -57,12 +57,21 @@ import {
 } from "../config";
 import {ShimmerUI} from "./ShimmerUI";
 import useRestaurant from "../util/useRestaurant";
+import useMenuItems from "../util/useMenuItems";
+import { useDispatch } from "react-redux";
+import { addItem } from "../util/cartSlice";
 const RestaurantMenu = () => {
     const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
     // const [restaurant, setRestaurant] = useState(null); // call useState to store the api data in res
-    const [menuItems, setMenuItems] = useState([]);
-
+    // const [menuItems, setMenuItems] = useState([]);
     const restaurant = useRestaurant(resId);
+    const menuItems = useMenuItems(resId);
+    
+    const dispatch = useDispatch();
+    const addFoodItems = (item) =>{
+      dispatch(addItem(item));
+    }
+                               
     // useEffect(() => {
     //   getRestaurantInfo(); // call getRestaurantInfo function so it fetch api data and set data in restaurant state variable
     // }, []);
@@ -130,18 +139,28 @@ const RestaurantMenu = () => {
           </div>
     
           <div className="restaurant-menu-content">
-            <div className="menu-items-container">
+            <div className="menu-items-container flex flex-col justify-center w-full">
               <div className="menu-title-wrap">
                 <h3 className="menu-title">Recommended</h3>
                 <p className="menu-count">
                   {menuItems.length} ITEMS
                 </p>
               </div>
-              <div className="menu-items-list">
+              <div className="menu-items-list flex flex-col justify-center">
                 {menuItems.map((item) => (
-                  <div className="menu-item" key={item?.id}>
-                    <div className="menu-item-details">
-                      <h3 className="item-title">{item?.name}</h3>
+                  <div className="bg-slate-300 m-2 flex w-4/5" key={item?.id}>
+                    <div className="menu-img-wrapper m-4  h-40 w-44 overflow-clip">
+                      {item?.imageId && (
+                        <img
+                          className="menu-item-img h-56"
+                          src={ITEM_IMG_CDN_URL + item?.imageId}
+                          alt={item?.name}
+                        />
+                      )}
+                      
+                    </div>
+                    <div className="menu-item-details w-max flex flex-col">
+                      <h3 className="font-bold">{item?.name}</h3>
                       <p className="item-cost">
                         {item?.price > 0
                           ? new Intl.NumberFormat("en-IN", {
@@ -151,17 +170,9 @@ const RestaurantMenu = () => {
                           : " "}
                       </p>
                       <p className="item-desc">{item?.description}</p>
+                      <button className="p-3 m-2 bg-blue-600 text-white" onClick={() => addFoodItems(item)}> ADD +</button>
                     </div>
-                    <div className="menu-img-wrapper">
-                      {item?.imageId && (
-                        <img
-                          className="menu-item-img"
-                          src={ITEM_IMG_CDN_URL + item?.imageId}
-                          alt={item?.name}
-                        />
-                      )}
-                      <button className="add-btn"> ADD +</button>
-                    </div>
+                    
                   </div>
                 ))}
               </div>
