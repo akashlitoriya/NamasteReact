@@ -8,13 +8,15 @@ import { useContext, useState } from "react"
 import { Link } from "react-router-dom";
 import store from "../util/store";
 import { useSelector } from "react-redux";
+import Logo from "../assets/logo.png";
 export const Title = ()=>{
   
     return(
       <img
         className="h-20 p-5"
+        data-testid = "logo"
         alt="This is a logo"
-        src=""
+        src={Logo}
       />
     );
     
@@ -32,7 +34,7 @@ export const Title = ()=>{
             <li className="px-5"><Link to = "/about">About</Link></li>
             <li className="px-5"><Link to = "/contact">Contact</Link></li>
             <li className="px-5"><Link to = "/instamart">InstaMart</Link></li>
-            <li className="px-5"><Link to = "/cart">Cart-{cartItems.length}</Link></li>
+            <li className="px-5"><Link to = "/cart" data-testid = "cart">Cart-{cartItems.length}</Link></li>
           </ul>
         </div>
         <div>

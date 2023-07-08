@@ -146,7 +146,7 @@ const RestaurantMenu = () => {
                   {menuItems.length} ITEMS
                 </p>
               </div>
-              <div className="menu-items-list flex flex-col justify-center">
+              <div className="menu-items-list flex flex-col justify-center" data-testid = "menu">
                 {menuItems.map((item) => (
                   <div className="bg-slate-300 m-2 flex w-4/5" key={item?.id}>
                     <div className="menu-img-wrapper m-4  h-40 w-44 overflow-clip">
@@ -170,7 +170,7 @@ const RestaurantMenu = () => {
                           : " "}
                       </p>
                       <p className="item-desc">{item?.description}</p>
-                      <button className="p-3 m-2 bg-blue-600 text-white" onClick={() => addFoodItems(item)}> ADD +</button>
+                      <button data-testid = "add-btn" className="p-3 m-2 bg-blue-600 text-white" onClick={() => addFoodItems(item)}> ADD +</button>
                     </div>
                     
                   </div>
