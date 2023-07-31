@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { filterData } from "../util/helper";
 import useOnline from "../util/useOnline";
 import UserContext from "../util/UserContext";
-
+import { ErrorPage } from "./ErrorPage"
 
 
 
@@ -33,7 +33,7 @@ const BodyComponent= () =>{
       // updated state variable restaurants with Swiggy API data
       const topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       const allRestaurant = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      const restau = topRestaurant.concat(allRestaurant);
+      const restau = allRestaurant.concat(topRestaurant);
       setAllRestaurants(restau);
       setFilteredRestaurants(restau);
     } catch (error) {
@@ -41,6 +41,7 @@ const BodyComponent= () =>{
     }
   }
 
+  console.log(filteredRestaurants);
   
   // use searchData function and set condition if data is empty show error message
   const searchData = (searchText, restaurants) => {
@@ -61,7 +62,7 @@ const BodyComponent= () =>{
   const isOnline = useOnline();
   if(!isOnline){
     return (
-      <h1>Offine, check your internet connection</h1>
+      <ErrorPage />
     )
   }
   // if allRestaurants is empty don't render restaurants cards
@@ -73,7 +74,7 @@ const BodyComponent= () =>{
         <input
           data-testid = "search-input"
           type="text"
-          className="search-input border-2 px-5 py-2 rounded-l-full "
+          className="search-input border-2 px-5 py-2 rounded-l-full bg-gray-100 focus:border-orange-300"
           placeholder="Search a restaurant you want..."
           value={searchText}
           // update the state variable searchText when we typing in input box
@@ -81,7 +82,7 @@ const BodyComponent= () =>{
         ></input>
         <button
           data-testid = "search-btn"
-          className="rounded-r-full border-2 px-5 py-2 bg-indigo-800 text-white"
+          className="rounded-r-full border-2 px-5 py-2 bg-orange-600 text-white"
           onClick={() => {
             // user click on button searchData function is called
             searchData(searchText, allRestaurants);
@@ -102,7 +103,7 @@ const BodyComponent= () =>{
       {allRestaurants?.length === 0 ? (
         <ShimmerUI />
       ) : (
-        <div className="flex flex-wrap" data-testid = "res-list">
+        <div className="flex flex-wrap justify-center" data-testid = "res-list">
           {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
           {filteredRestaurants.map((restaurant) => {
             return (

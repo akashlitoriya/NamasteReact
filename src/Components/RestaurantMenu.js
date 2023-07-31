@@ -109,75 +109,59 @@ const RestaurantMenu = () => {
     return !restaurant ? (
         <ShimmerUI />
       ) : (
-        <div className="restaurant-menu">
-          <div className="restaurant-summary">
-            <img
-              className="restaurant-img"
-              src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
-              alt={restaurant?.name}
-            />
-            <div className="restaurant-summary-details">
-              <h2 className="restaurant-title">{restaurant?.name}</h2>
-              <p className="restaurant-tags">{restaurant?.cuisines?.join(", ")}</p>
-              <div className="restaurant-details">
-                <div className="restaurant-rating" style={
-                (restaurant?.avgRating) < 4
-                  ? { backgroundColor: "var(--light-red)" }
-                  : (restaurant?.avgRating) === "--"
-                  ? { backgroundColor: "white", color: "black" }
-                  : { color: "white" }
-              }>
-                <i className="fa-solid fa-star"></i>
-                  <span>{restaurant?.avgRating}</span>
-                </div>
-                <div className="restaurant-rating-slash">|</div>
-                <div>{restaurant?.sla?.slaString}</div>
-                <div className="restaurant-rating-slash">|</div>
-                <div>{restaurant?.costForTwoMessage}</div>
-              </div>
+        <div className="w-screen mx-auto mt-10">
+          <div className="w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
+            <div className="">
+              <h2 className="text-xl font-bold text-gray-700 mb-4">{restaurant?.name}</h2>
+              <p className="text-lg font-semibold text-gray-600">{restaurant?.cuisines?.join(", ")}</p>
+            </div>
+            <div className="flex items-center">
+              <div className={"font-bold" + " " + (restaurant.avgRating >= 4? "text-[#48c479]" : (restaurant.avgRating < 3) ? "text-[#e1b055]" : "text-[#db7c38]")}><i className="fa-solid fa-star"></i>{restaurant.avgRating}</div>
             </div>
           </div>
     
-          <div className="restaurant-menu-content">
-            <div className="menu-items-container flex flex-col justify-center w-full">
-              <div className="menu-title-wrap">
-                <h3 className="menu-title">Recommended</h3>
-                <p className="menu-count">
+          <div className="w-2/3 m-auto">
+            <div className="flex flex-col justify-center w-full">
+              <div className="flex flex-row justify-between mt-8 mb-8 p-4">
+                <h3 className="text-lg font-semibold text-gray-600">Recommended</h3>
+                <p className="text-md font-semibold text-gray-600">
                   {menuItems.length} ITEMS
                 </p>
               </div>
-              <div className="menu-items-list flex flex-col justify-center" data-testid = "menu">
+              <div className="box-border flex flex-col" data-testid = "menu">
                 {menuItems.map((item) => (
-                  <div className="bg-slate-300 m-2 flex w-4/5" key={item?.id}>
-                    <div className="menu-img-wrapper m-4  h-40 w-44 overflow-clip">
-                      {item?.imageId && (
-                        <img
-                          className="menu-item-img h-56"
-                          src={ITEM_IMG_CDN_URL + item?.imageId}
-                          alt={item?.name}
-                        />
-                      )}
-                      
+                  <div className="bg-slate-50 m-2 flex justify-between w-full p-5 rounded-lg" key={item?.id}>
+                    <div className="w-max flex flex-col">
+                      <div className={"w-4 h-4 mb-3 " + (item.isVeg == 1 ? "text-green-700" : "text-red-700")}><i class="fa-regular fa-circle-stop"></i></div>
+                        <h3 className="font-semibold text-lg text-gray-800">{item?.name}</h3>
+                        <p className="font-semibold text-md text-gray-600">
+                          {item?.price > 0
+                            ? new Intl.NumberFormat("en-IN", {
+                                style: "currency",
+                                currency: "INR",
+                              }).format(item?.price / 100)
+                            : " "}
+                        </p>
+                        <p className="font-semibold text-md text-gray-500">{item?.description}</p>
                     </div>
-                    <div className="menu-item-details w-max flex flex-col">
-                      <h3 className="font-bold">{item?.name}</h3>
-                      <p className="item-cost">
-                        {item?.price > 0
-                          ? new Intl.NumberFormat("en-IN", {
-                              style: "currency",
-                              currency: "INR",
-                            }).format(item?.price / 100)
-                          : " "}
-                      </p>
-                      <p className="item-desc">{item?.description}</p>
-                      <button data-testid = "add-btn" className="p-3 m-2 bg-blue-600 text-white" onClick={() => addFoodItems(item)}> ADD +</button>
+                    <div className="flex flex-col justify-center">
+                      <div className="w-32 h-28 overflow-clip rounded-lg">
+                        {item?.imageId && (
+                          <img
+                            className="w-full h-full scale-150 "
+                            src={ITEM_IMG_CDN_URL + item?.imageId}
+                            alt={item?.name}
+                          />
+                        )}
+                      </div>
+                      <button data-testid = "add-btn" className="relative -top-2 bg-slate-200 w-max m-auto py-1 px-2 rounded-md font-semibold transition-all ease-in hover:bg-slate-300" onClick={() => addFoodItems(item)}> ADD +</button>
                     </div>
-                    
+                
                   </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
+        </div>
         </div>
       );
     };
