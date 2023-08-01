@@ -74,7 +74,7 @@ const BodyComponent= () =>{
         <input
           data-testid = "search-input"
           type="text"
-          className="search-input border-2 px-5 py-2 rounded-l-full bg-gray-100 focus:border-orange-300"
+          className="search-input border-2 px-5 py-2 rounded-l-full bg-gray-50 focus:border-orange-300"
           placeholder="Search a restaurant you want..."
           value={searchText}
           // update the state variable searchText when we typing in input box

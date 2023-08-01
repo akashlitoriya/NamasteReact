@@ -6,23 +6,28 @@ const FoodItems = ({
     name,
     price,
     itemAttribute,
-    id
+    id,
+    isVeg
     
-  }) =>{
+  })=>{
+
     
+
     return(
-      <div className="transition ease-in-out flex p-4 m-3 shadow bg-indigo-100 hover:scale-105 duration-300">
-        <img src={
-            ITEM_IMG_CDN_URL +
-            imageId
-          }/>
-        <div className = "m-3">
-            <h2 className="font-bold text-sky-800">{name}</h2>
-            <h3>{itemAttribute.vegClassifier}</h3>
-            <h3>Rupee :- {price/100}</h3>
-            
+      <div className="flex justify-between p-4 m-3 w-full ">
+        <div className = "flex">
+          <div className={(isVeg)? "text-green-700" : "text-red-700"}>
+            <i class="fa-regular fa-circle-stop"></i>
+          </div>
+          <h2 className="font-semibold text-gray-600 ml-2">{name}</h2>
         </div>
-       </div>
+        <div>
+          <h3> 
+            {price > 0? new Intl.NumberFormat("en-IN", {style: "currency", currency: "INR",}).format(price / 100) : " "}
+          </h3>
+        </div>
+        
+      </div>
     )
   }
 

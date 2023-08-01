@@ -36,10 +36,10 @@ export const Title = ()=>{
         <Title />
         <div className="nav-items">
           <ul className ="flex py-7">
-            <li className="px-5"><Link to = "/" className="font-semibold font-sans transition ease-linear  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">Home</Link></li>
-            <li className="px-5"><Link to = "/about" className="font-semibold font-sans transition ease-linear  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">About</Link></li>
-            <li className="px-5"><Link to = "/contact" className="font-semibold font-sans transition ease-linear  hover:font-bold duration-300 focus:text-orange-600 focus:font-boldd">Contact</Link></li>
-            <li className="px-5"><Link to = "/instamart" className="font-semibold font-sans transition ease-linear  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">InstaMart</Link></li>
+            <li className="px-5"><Link to = "/" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">Home</Link></li>
+            <li className="px-5"><Link to = "/about" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">About</Link></li>
+            <li className="px-5"><Link to = "/contact" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-boldd">Contact</Link></li>
+            <li className="px-5"><Link to = "/instamart" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">InstaMart</Link></li>
             
           </ul>
         </div>
