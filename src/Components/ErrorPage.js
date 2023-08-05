@@ -8,7 +8,7 @@ export const Error = () => {
             <div className="w-full flex flex-col justify-center items-center">
                 <h1 className="text-4xl font-bold mb-5">Oops!!!</h1>
                 <h2 className="text-4xl font-bold mb-5">Something went wrong</h2>
-                <h3 className="text-4xl font-bold text-orange-700">{err.status == undefined ? "Chech Internet Connection" : err.statusText} </h3>
+                <h3 className="text-4xl font-bold text-orange-700">{err.status == undefined ? "Check Internet Connection" : err.statusText} </h3>
             </div>
             <div className="flex flex-col justify-center items-center">
                 <img 
