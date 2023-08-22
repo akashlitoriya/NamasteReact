@@ -19,7 +19,7 @@ const BodyComponent= () =>{
   const [errorMessage, setErrorMessage] = useState("");
   const {user, setUser} = useContext(UserContext);
 
-  alert("Please ensure that CORS is enabled");
+
   useEffect(() => {
     getRestaurants();
   }, []);
