@@ -42,7 +42,7 @@ const BodyComponent= () =>{
     }
   }
 
-  console.log(filteredRestaurants);
+ 
   
   // use searchData function and set condition if data is empty show error message
 
@@ -71,7 +71,7 @@ const BodyComponent= () =>{
     )
   }
   // if allRestaurants is empty don't render restaurants cards
-  if (!allRestaurants) return null;
+  if (!allRestaurants) return <ShimmerUI />;
 
   return (
     <>
