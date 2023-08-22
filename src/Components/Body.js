@@ -33,9 +33,10 @@ const BodyComponent= () =>{
       // updated state variable restaurants with Swiggy API data
       const topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       const allRestaurant = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      const restau = allRestaurant.concat(topRestaurant);
-      setAllRestaurants(restau);
-      setFilteredRestaurants(restau);
+      //const restau = allRestaurant.concat(topRestaurant);
+      
+      setAllRestaurants(topRestaurant);
+      setFilteredRestaurants(topRestaurant);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +45,11 @@ const BodyComponent= () =>{
   console.log(filteredRestaurants);
   
   // use searchData function and set condition if data is empty show error message
-  const searchData = (searchText, restaurants) => {
+
+  useEffect(()=>{
+    searchData(searchText, allRestaurants)
+  },[searchText]);
+  function searchData (searchText, restaurants){
     if (searchText !== "") {
       const data = filterData(searchText, restaurants);
       setFilteredRestaurants(data);
@@ -57,7 +62,7 @@ const BodyComponent= () =>{
       setFilteredRestaurants(restaurants);
     }
   };
-  console.log(filteredRestaurants);
+  
 
   const isOnline = useOnline();
   if(!isOnline){
