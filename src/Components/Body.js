@@ -71,7 +71,7 @@ const BodyComponent= () =>{
     )
   }
   // if allRestaurants is empty don't render restaurants cards
-  if (!allRestaurants) return <ShimmerUI />;
+  // if (!allRestaurants) return null;
 
   return (
     <>
@@ -95,12 +95,12 @@ const BodyComponent= () =>{
         >
           Search
         </button>
-        <input type="text" value = {user.name}
+        {/* <input type="text" value = {user.name}
           onChange={e => setUser({
             name: e.target.value,
             email: "example@gmail.com"
           })}
-        ></input>
+        ></input> */}
       </div>
       {errorMessage && <div className="error-container">{errorMessage}</div>}
 
