@@ -16,21 +16,21 @@ const Cart = () =>{
     console.log(cartItem)
     return (
         <div className="w-screen flex flex-col items-center">
-            <div className="w-2/3 flex justify-between items-center mt-7 pb-5 border-b-2">
+            <div className="w-11/12 lg:w-2/3 flex justify-between items-center mt-7 pb-5 border-b-2">
                 <div>
-                    <h1 className="font-semibold text-lg text-gray-800">Cart Items - {cartItem.length}</h1>
-                    <h1 className="font-semibold text-lg text-gray-800">Price - {(price > 0)
+                    <h1 className="font-semibold text-base lg:text-lg text-gray-800">Cart Items - {cartItem.length}</h1>
+                    <h1 className="font-semibold text-base lg:text-lg text-gray-800">Price - {(price > 0)
                             ? new Intl.NumberFormat("en-IN", {
                                 style: "currency",
                                 currency: "INR",
                               }).format(price)
                             : " "}</h1>
                 </div>
-                <button className = " text-white font-semibold p-4 m-2 bg-gray-500 rounded-lg transition-all hover:scale-110 duration-300" onClick={() => handleClearCart()}>Clear Cart</button>
+                <button className = " text-white font-semibold p-2 m-1 text-sm lg:text-base lg:p-4 lg:m-2 bg-gray-500 rounded-lg transition-all hover:scale-110 duration-300" onClick={() => handleClearCart()}>Clear Cart</button>
             </div>
             
             {cartItem.map((item) => 
-            <div className="flex w-2/3 bg-slate-100 m-3 shadow-md rounded-md transition-all ease-in duration-200 hover:bg-slate-200">
+            <div className="flex w-11/12 lg:w-2/3 bg-slate-100 m-1 lg:m-3 shadow-md rounded-md transition-all ease-in duration-200 hover:bg-slate-200">
                 <FoodItems key={item.id} {...item} />
                 <button className="p-4 " onClick={()=> handleRemoveFromCart(item)}> <i class="fa-solid fa-xmark"></i></button>
             </div>)}

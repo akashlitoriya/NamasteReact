@@ -20,7 +20,7 @@ export const Title = ()=>{
             alt="This is a logo"
             src={Logo}
           />
-          <div className="text-2xl text-orange-600 font-sans font-bold">
+          <div className="text-xl lg:text-2xl text-orange-600 font-sans font-bold">
             FoodVilla
           </div>
       </div>
@@ -40,7 +40,7 @@ export const Title = ()=>{
     const hamburger = useSelector(store => store.hamburger.clicked);
     console.log(cartItems);
     return (
-      <div className="flex justify-between items-center h-28 shadow-xl px-4">
+      <div className="flex justify-between items-center h-20 lg:h-28 shadow-xl px-4">
         <div className="flex justify-center ml-2">
           <button className="hidden max-lg:block" onClick={()=> toggleHamburger()}> <i class="fa-solid fa-bars"></i></button>
           <Title />
@@ -56,7 +56,7 @@ export const Title = ()=>{
           </ul>
         </div>
         <div className="mr-5 flex flex-row">
-          <Link to = "/cart" data-testid = "cart"> <i className="fa-solid fa-cart-shopping text-2xl"></i><div className="absolute top-6 right-2 bg-red-800 rounded-full px-2 text-sm font-semibold text-white">{cartItems.length}</div> </Link>
+          <Link to = "/cart" data-testid = "cart"> <i className="fa-solid fa-cart-shopping text-xl lg:text-2xl"></i><div className="absolute top-5 right-[25px] lg:top-6 lg:right-2 bg-red-800 rounded-full px-1 lg:px-2 text-xs lg:text-sm font-semibold text-white">{cartItems.length}</div> </Link>
             {/* <h1>{user.name}</h1> */}
         </div>
       </div>

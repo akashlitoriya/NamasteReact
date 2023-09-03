@@ -109,22 +109,22 @@ const RestaurantMenu = () => {
     return !restaurant ? (
         <ShimmerUI />
       ) : (
-        <div className="w-screen mx-auto mt-10">
-          <div className="w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
+        <div className="w-screen mx-auto mt-4 lg:mt-10">
+          <div className="w-11/12 lg:w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
             <div className="">
-              <h2 className="text-xl font-bold text-gray-700 mb-4">{restaurant?.name}</h2>
-              <p className="text-lg font-semibold text-gray-600">{restaurant?.cuisines?.join(", ")}</p>
+              <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurant?.name}</h2>
+              <p className="text-base lg:text-lg font-semibold text-gray-600">{restaurant?.cuisines?.join(", ")}</p>
             </div>
             <div className="flex items-center">
               <div className={"font-bold" + " " + (restaurant.avgRating >= 4? "text-[#48c479]" : (restaurant.avgRating < 3) ? "text-[#e1b055]" : "text-[#db7c38]")}><i className="fa-solid fa-star"></i>{restaurant.avgRating}</div>
             </div>
           </div>
     
-          <div className="w-2/3 m-auto">
+          <div className="w-11/12 lg:w-2/3 m-auto">
             <div className="flex flex-col justify-center w-full">
-              <div className="flex flex-row justify-between mt-8 mb-8 p-4">
-                <h3 className="text-lg font-semibold text-gray-600">Recommended</h3>
-                <p className="text-md font-semibold text-gray-600">
+              <div className="flex flex-row justify-between my-3 lg:mt-8 lg:mb-8 p-4">
+                <h3 className="text-base lg:text-lg font-semibold text-gray-600">Recommended</h3>
+                <p className="text-sm lg:text-md font-semibold text-gray-600">
                   {menuItems.length} ITEMS
                 </p>
               </div>
@@ -133,8 +133,8 @@ const RestaurantMenu = () => {
                   <div className="bg-slate-50 m-2 flex justify-between w-full p-5 rounded-lg" key={item?.id}>
                     <div className="w-max flex flex-col">
                       <div className={"w-4 h-4 mb-3 " + (item.isVeg == 1 ? "text-green-700" : "text-red-700")}><i class="fa-regular fa-circle-stop"></i></div>
-                        <h3 className="font-semibold text-lg text-gray-800">{item?.name}</h3>
-                        <p className="font-semibold text-md text-gray-600">
+                        <h3 className="font-semibold text-base lg:text-lg text-gray-800">{item?.name}</h3>
+                        <p className="font-semibold text-sm lg:text-md text-gray-600">
                           {item?.price > 0
                             ? new Intl.NumberFormat("en-IN", {
                                 style: "currency",
@@ -142,10 +142,10 @@ const RestaurantMenu = () => {
                               }).format(item?.price / 100)
                             : " "}
                         </p>
-                        <p className="font-semibold text-md text-gray-500">{item?.description}</p>
+                        <p className="font-semibold text-xs lg:text-md text-gray-500 line-clamp-1">{item?.description}</p>
                     </div>
                     <div className="flex flex-col justify-center">
-                      <div className="w-32 h-28 overflow-clip rounded-lg">
+                      <div className="w-20 h-16 lg:w-32 lg:h-28 overflow-clip rounded-lg">
                         {item?.imageId && (
                           <img
                             className="w-full h-full scale-150 "
@@ -154,7 +154,7 @@ const RestaurantMenu = () => {
                           />
                         )}
                       </div>
-                      <button data-testid = "add-btn" className="relative -top-2 bg-slate-200 w-max m-auto py-1 px-2 rounded-md font-semibold transition-all ease-in hover:bg-slate-300" onClick={() => addFoodItems(item)}> ADD +</button>
+                      <button data-testid = "add-btn" className="relative -top-2 bg-slate-200 w-max m-auto py-1 px-2 rounded-md text-xs lg:text-base font-semibold transition-all ease-in hover:bg-slate-300" onClick={() => addFoodItems(item)}> ADD +</button>
                     </div>
                 
                   </div>
