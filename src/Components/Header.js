@@ -40,7 +40,7 @@ export const Title = ()=>{
     const hamburger = useSelector(store => store.hamburger.clicked);
     console.log(cartItems);
     return (
-      <div className="flex justify-between items-center h-20 lg:h-28 shadow-xl px-4">
+      <div className="flex justify-between fixed w-screen z-10 bg-white top-0 items-center h-20 lg:h-28 shadow-xl px-7">
         <div className="flex justify-center ml-2">
           <button className="hidden max-lg:block" onClick={()=> toggleHamburger()}> <i class="fa-solid fa-bars"></i></button>
           <Title />
@@ -56,7 +56,7 @@ export const Title = ()=>{
           </ul>
         </div>
         <div className="mr-5 flex flex-row">
-          <Link to = "/cart" data-testid = "cart"> <i className="fa-solid fa-cart-shopping text-xl lg:text-2xl"></i><div className="absolute top-5 right-[25px] lg:top-6 lg:right-2 bg-red-800 rounded-full px-1 lg:px-2 text-xs lg:text-sm font-semibold text-white">{cartItems.length}</div> </Link>
+          <Link to = "/cart" data-testid = "cart"> <i className="fa-solid fa-cart-shopping text-xl lg:text-2xl"></i><div className="absolute top-5 right-[37px] lg:top-6 lg:right-7 bg-red-800 rounded-full px-1 lg:px-2 text-xs lg:text-sm font-semibold text-white">{cartItems.length}</div> </Link>
             {/* <h1>{user.name}</h1> */}
         </div>
       </div>

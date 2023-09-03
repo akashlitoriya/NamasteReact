@@ -109,7 +109,7 @@ const RestaurantMenu = () => {
     return !restaurant ? (
         <ShimmerUI />
       ) : (
-        <div className="w-screen mx-auto mt-4 lg:mt-10">
+        <div className="w-screen mx-auto mt-20 lg:mt-40">
           <div className="w-11/12 lg:w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
             <div className="">
               <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurant?.name}</h2>
@@ -130,7 +130,7 @@ const RestaurantMenu = () => {
               </div>
               <div className="box-border flex flex-col" data-testid = "menu">
                 {menuItems.map((item) => (
-                  <div className="bg-slate-50 m-2 flex justify-between w-full p-5 rounded-lg" key={item?.id}>
+                  <div className="bg-slate-50 m-1 lg:m-2 flex justify-between w-full p-3 lg:p-5 rounded-lg" key={item?.id}>
                     <div className="w-max flex flex-col">
                       <div className={"w-4 h-4 mb-3 " + (item.isVeg == 1 ? "text-green-700" : "text-red-700")}><i class="fa-regular fa-circle-stop"></i></div>
                         <h3 className="font-semibold text-base lg:text-lg text-gray-800">{item?.name}</h3>

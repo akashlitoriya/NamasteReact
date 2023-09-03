@@ -89,7 +89,7 @@ const BodyComponent= () =>{
 
   return (
     <>
-      <div className="flex justify-center m-6">
+      <div className="flex justify-center mt-28 lg:mt-36">
         <input
           data-testid = "search-input"
           type="text"

@@ -15,7 +15,7 @@ const Cart = () =>{
     }
     console.log(cartItem)
     return (
-        <div className="w-screen flex flex-col items-center">
+        <div className="w-screen mt-20 lg:mt-40 flex flex-col items-center">
             <div className="w-11/12 lg:w-2/3 flex justify-between items-center mt-7 pb-5 border-b-2">
                 <div>
                     <h1 className="font-semibold text-base lg:text-lg text-gray-800">Cart Items - {cartItem.length}</h1>
