@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
 import { useState, useEffect, useContext } from "react";
-import { swiggy_api_URL } from "../config";
+import { swiggy_api_URL, swiggy_mobile_api_URL } from "../config";
 import { ShimmerUI } from "./ShimmerUI";
 import { Link } from "react-router-dom";
 import { filterData } from "../util/helper";
@@ -24,15 +24,29 @@ const BodyComponent= () =>{
     getRestaurants();
   }, []);
 
+  //Function to check if mobile or not
+  function isMobile(){
+    return window.innerWidth <= 768;
+  }
   async function getRestaurants() {
     // handle the error using try... catch
     try {
-      const data = await fetch(swiggy_api_URL);
+      const data = await fetch(
+        isMobile()? 
+        swiggy_mobile_api_URL: swiggy_api_URL
+      );
       const json = await data.json();
       
       // updated state variable restaurants with Swiggy API data
-      const topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      const allRestaurant = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        let topRestaurant;
+        if(isMobile()){
+          topRestaurant = json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle
+          ?.restaurants;
+        }else{
+          topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        }
+      
+      // const allRestaurant = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       //const restau = allRestaurant.concat(topRestaurant);
       
       setAllRestaurants(topRestaurant);
@@ -64,14 +78,14 @@ const BodyComponent= () =>{
   };
   
 
-  const isOnline = useOnline();
-  if(!isOnline){
-    return (
-      <ErrorPage />
-    )
-  }
+  // const isOnline = useOnline();
+  // if(!isOnline){
+  //   return (
+  //     <ErrorPage />
+  //   )
+  // }
   // if allRestaurants is empty don't render restaurants cards
-  if (!allRestaurants) return null;
+  // if (!allRestaurants) return <h1>This is early return</h1>;
 
   return (
     <>
@@ -105,7 +119,7 @@ const BodyComponent= () =>{
       {errorMessage && <div className="error-container">{errorMessage}</div>}
 
       {/* if restaurants data is not fetched then display Shimmer UI after the fetched data display restaurants cards */}
-      {allRestaurants?.length === 0 ? (
+      {!allRestaurants || allRestaurants?.length === 0 ? (
         <ShimmerUI />
       ) : (
         <div className="flex flex-wrap justify-center" data-testid = "res-list">
@@ -113,8 +127,8 @@ const BodyComponent= () =>{
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
-                to={"/restaurant/" + restaurant.info.id}
-                key={restaurant.info.id}
+                to={"/restaurant/" + restaurant?.info?.id}
+                key={restaurant?.info?.id}
               >
                 <RestaurantCard {...restaurant.info} />
               </Link>

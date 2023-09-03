@@ -7,8 +7,9 @@ import UserContext from "../util/UserContext";
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom";
 import store from "../util/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "../assets/logo.png";
+import {clickedHamburger} from "../util/hamburgerSlice"
 export const Title = ()=>{
   
     return( 
@@ -30,12 +31,23 @@ export const Title = ()=>{
   const HeaderComponent = ()=>{
     const { user } = useContext(UserContext);
     const cartItems = useSelector(store => store.cart.items);
+    
+
+    const dispatch = useDispatch();
+    const toggleHamburger = () =>{
+      dispatch(clickedHamburger());
+    }
+    const hamburger = useSelector(store => store.hamburger.clicked);
     console.log(cartItems);
     return (
-      <div className="flex justify-between items-center h-28 shadow-xl">
-        <Title />
-        <div className="nav-items">
-          <ul className ="flex py-7">
+      <div className="flex justify-between items-center h-28 shadow-xl px-4">
+        <div className="flex justify-center ml-2">
+          <button className="hidden max-lg:block" onClick={()=> toggleHamburger()}> <i class="fa-solid fa-bars"></i></button>
+          <Title />
+        </div>
+        
+        <div className={"nav-items relative "+ (!hamburger? "hidden": "block") + " lg:block "}>
+          <ul className ="flex py-7 flex-col h-40 absolute top-14 -left-72 w-screen gap-1 items-center lg:-top-8 lg:-left-60 lg:bg-white lg:h-full lg:w-full shadow-md bg-white z-10 lg:flex-row">
             <li className="px-5"><Link to = "/" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">Home</Link></li>
             <li className="px-5"><Link to = "/about" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-bold">About</Link></li>
             <li className="px-5"><Link to = "/contact" className="font-semibold font-sans transition-all ease-in  hover:font-bold duration-300 focus:text-orange-600 focus:font-boldd">Contact</Link></li>

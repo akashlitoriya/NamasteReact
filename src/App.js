@@ -83,10 +83,11 @@ const AppLayout = ()=>{
         setUser: setUser
         }
       }>
+        
         <HeaderComponent />
         <Outlet />
         <Footer />
-      </UserContext.Provider>
+        </UserContext.Provider>
     </Provider>
   );
 };
