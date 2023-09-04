@@ -43,6 +43,7 @@ const BodyComponent= () =>{
           topRestaurant = json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle
           ?.restaurants;
         }else{
+          // topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
           topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         }
       
