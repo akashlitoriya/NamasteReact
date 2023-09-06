@@ -8,7 +8,7 @@ import { filterData } from "../util/helper";
 import useOnline from "../util/useOnline";
 import UserContext from "../util/UserContext";
 import { ErrorPage } from "./ErrorPage"
-
+import Carousel from "./Carousel";
 
 
 const BodyComponent= () =>{
@@ -90,7 +90,9 @@ const BodyComponent= () =>{
 
   return (
     <>
-      <div className="flex justify-center mt-28 lg:mt-36">
+    <Carousel />
+      <div className="flex justify-center mt-12 lg:mt-12">
+        
         <input
           data-testid = "search-input"
           type="text"

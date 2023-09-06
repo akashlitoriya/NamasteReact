@@ -1,15 +1,26 @@
 import { useState, useEffect } from "react";
-import { swiggy_menu_api_URL } from "../config";
-import { RESTAURANT_TYPE_KEY } from "../config";
-const useRestaurant = (resId) =>{
+import { isMobile } from "./utilityFunctions";
+import { swiggy_api_URL, swiggy_mobile_api_URL } from "../config";
+const useRestaurant = () =>{
     const [restaurant, setRestaurant] = useState(null);
-
     async function getRestaurant(){
-        const data = await fetch(swiggy_menu_api_URL + resId);
-        const json = await data.json();
-        const restaurantData = json?.data?.cards?.map(x => x.card)?.
-                               find(x => x && x.card['@type'] === RESTAURANT_TYPE_KEY)?.card?.info || null;
-        setRestaurant(restaurantData);
+        const data = await fetch(
+            isMobile()? 
+            swiggy_mobile_api_URL: swiggy_api_URL
+          );
+          const json = await data.json();
+          
+          // updated state variable restaurants with Swiggy API data
+            let topRestaurant;
+            if(isMobile()){
+              topRestaurant = json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle
+              ?.restaurants;
+            }else{
+              // topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+              topRestaurant = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            }
+        
+        setRestaurant(topRestaurant);
         
     }
 
