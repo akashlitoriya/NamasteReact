@@ -33,12 +33,12 @@ const Carousel = () => {
 
     const moveElementsLeft = () => {
         let width = box.clientWidth;
-        box.scrollLeft = box.scrollLeft - width/2;
+        box.scrollLeft = box.scrollLeft - width;
         console.log(width);
     }
     const moveElementsRight = () => {
         let width = box.clientWidth;
-        box.scrollLeft = box.scrollLeft + width/2;
+        box.scrollLeft = box.scrollLeft + width;
     }
 
   return (
