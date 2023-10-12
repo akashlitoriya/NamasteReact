@@ -18,7 +18,7 @@ import { Provider } from "react-redux";
 import mystore from "./util/store";
 import Cart from "./Components/Cart";
 import Carousel from "./Components/Carousel";
-
+import { Toaster } from "react-hot-toast";
 const InstaMart = lazy(() => 
   import("./Components/InstaMart")
 )
@@ -88,6 +88,7 @@ const AppLayout = ()=>{
         <HeaderComponent />
         <Outlet />
         <Footer />
+        <Toaster />
         </UserContext.Provider>
     </Provider>
   );

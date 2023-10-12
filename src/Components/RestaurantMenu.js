@@ -60,13 +60,18 @@ import useRestaurant from "../util/useRestaurant";
 import useMenuItems from "../util/useMenuItems";
 import { useDispatch } from "react-redux";
 import { addItem } from "../util/cartSlice";
+import {toast} from 'react-hot-toast';
+import icon from '../../src/assets/icon.jpg'
+import useRestaurantDetails from "../util/useRestaurantDetails";
 const RestaurantMenu = () => {
     const { resId } = useParams(); // call useParams and get value of restaurant id using object destructuring
     // const [restaurant, setRestaurant] = useState(null); // call useState to store the api data in res
     // const [menuItems, setMenuItems] = useState([]);
     const restaurant = useRestaurant(resId);
     const menuItems = useMenuItems(resId);
-    
+    const restaurantDetails = useRestaurantDetails(resId)[0];
+
+    console.log(restaurantDetails)
     const dispatch = useDispatch();
     const addFoodItems = (item) =>{
       dispatch(addItem(item));
@@ -76,15 +81,15 @@ const RestaurantMenu = () => {
     return !restaurant ? (
         <ShimmerUI />
       ) : (
-        <div className="w-screen mx-auto mt-20 lg:mt-40">
+        <div className=" mx-auto mt-20 lg:mt-40">
           <div className="w-11/12 lg:w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
             <div className="">
-              <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurant?.name}</h2>
-              <p className="text-base lg:text-lg font-semibold text-gray-600">{restaurant?.cuisines?.join(", ")}</p>
+              <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurantDetails.name}</h2>
+              <p className="text-base lg:text-lg font-semibold text-gray-600">{restaurantDetails.completeAddress}</p>
             </div>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <div className={"font-bold" + " " + (restaurant.avgRating >= 4? "text-[#48c479]" : (restaurant.avgRating < 3) ? "text-[#e1b055]" : "text-[#db7c38]")}><i className="fa-solid fa-star"></i>{restaurant.avgRating}</div>
-            </div>
+            </div> */}
           </div>
     
           <div className="w-11/12 lg:w-2/3 m-auto">
@@ -97,7 +102,8 @@ const RestaurantMenu = () => {
               </div>
               <div className="box-border flex flex-col" data-testid = "menu">
                 {menuItems.map((item) => (
-                  <div className="bg-slate-50 m-1 lg:m-2 flex justify-between w-full p-3 lg:p-5 rounded-lg" key={item?.id}>
+                  item.imageId && (
+                    <div className="bg-slate-50 m-1 lg:m-2 flex justify-between w-full p-3 lg:p-5 rounded-lg" key={item?.id}>
                     <div className="w-max flex flex-col">
                       <div className={"w-4 h-4 mb-3 " + (item.isVeg == 1 ? "text-green-700" : "text-red-700")}><i class="fa-regular fa-circle-stop"></i></div>
                         <h3 className="font-semibold text-base lg:text-lg text-gray-800">{item?.name}</h3>
@@ -116,15 +122,17 @@ const RestaurantMenu = () => {
                         {item?.imageId && (
                           <img
                             className="w-full h-full scale-150 "
-                            src={ITEM_IMG_CDN_URL + item?.imageId}
+                            src={item.imageId? ITEM_IMG_CDN_URL + item?.imageId : icon}
                             alt={item?.name}
                           />
                         )}
+                        
                       </div>
-                      <button data-testid = "add-btn" className="relative -top-2 bg-slate-200 w-max m-auto py-1 px-2 rounded-md text-xs lg:text-base font-semibold transition-all ease-in hover:bg-slate-300" onClick={() => addFoodItems(item)}> ADD +</button>
+                      <button data-testid = "add-btn" className="relative -top-2 bg-slate-200 w-max m-auto py-1 px-2 rounded-md text-xs lg:text-base font-semibold transition-all ease-in hover:bg-slate-300" onClick={() => {addFoodItems(item)}}> ADD +</button>
                     </div>
                 
                   </div>
+                  )
               ))}
             </div>
           </div>

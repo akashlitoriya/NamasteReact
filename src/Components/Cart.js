@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FoodItems from "./FoodItems";
 import store from "../util/store";
 import { clearCart, removeItem } from "../util/cartSlice";
-
+import {toast} from 'react-hot-toast'
 const Cart = () =>{
     const cartItem = useSelector(store => store.cart.items);
     const price = useSelector(store => store.cart.total);
@@ -32,7 +32,7 @@ const Cart = () =>{
             {cartItem.map((item) => 
             <div className="flex w-11/12 lg:w-2/3 bg-slate-100 m-1 lg:m-3 shadow-md rounded-md transition-all ease-in duration-200 hover:bg-slate-200">
                 <FoodItems key={item.id} {...item} />
-                <button className="p-4 " onClick={()=> handleRemoveFromCart(item)}> <i class="fa-solid fa-xmark"></i></button>
+                <button className="p-4 " onClick={()=> {handleRemoveFromCart(item); toast.success("Item removed from cart")}}> <i class="fa-solid fa-xmark"></i></button>
             </div>)}
         </div>
     )
