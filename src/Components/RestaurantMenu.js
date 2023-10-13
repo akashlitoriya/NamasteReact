@@ -84,8 +84,8 @@ const RestaurantMenu = () => {
         <div className=" mx-auto mt-20 lg:mt-40">
           <div className="w-11/12 lg:w-2/3 p-4 m-auto flex flex-row justify-between border-b-2">
             <div className="">
-              <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurantDetails.name}</h2>
-              <p className="text-base lg:text-lg font-semibold text-gray-600">{restaurantDetails.completeAddress}</p>
+              <h2 className="text-lg font-bold lg:text-xl lg:font-bold text-gray-700 mb-2 lg:mb-4">{restaurantDetails?.name}</h2>
+              <p className="text-base lg:text-lg font-semibold text-gray-600">{restaurantDetails?.completeAddress}</p>
             </div>
             {/* <div className="flex items-center">
               <div className={"font-bold" + " " + (restaurant.avgRating >= 4? "text-[#48c479]" : (restaurant.avgRating < 3) ? "text-[#e1b055]" : "text-[#db7c38]")}><i className="fa-solid fa-star"></i>{restaurant.avgRating}</div>
