@@ -60,7 +60,7 @@ export const Title = ()=>{
       //   </div>
       // </div>
       <div className="w-screen h-14 shadow-sm z-30 fixed top-0 left-0 bg-white">
-        <div className="px-5 h-full mx-auto flex flex-row justify-between items-center relative">
+        <div className="px-5 max-w-[1200px] h-full mx-auto flex flex-row justify-between items-center relative">
           <div className="flex gap-3 items-center">
               <AiOutlineMenu className="font-extrabold text-xl z-50 md:hidden" onClick={toggleHamburger}/>
               <span className="text-base md:text-xl font-bold text-red-500"> <Link to="/">FoodVilla</Link></span>
