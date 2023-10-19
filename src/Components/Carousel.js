@@ -46,7 +46,7 @@ const Carousel = () => {
   return (
     <>
         { !restaurant || !restaurant?.length === 0 ? ( <div></div>) : (
-            <div className={`mt-28 -z-10 lg:mt-40 relative max-w-fit lg:mx-auto mx-3`}>
+            <div className={`mt-28 ${hamburger? "-z-10" : "z-0"} lg:mt-40 relative max-w-fit lg:mx-auto mx-3`}>
                 <div className='flex justify-between'>
                     <div className='text-base font-semibold lg:text-xl lg:font-bold'>
                         Best Offer for you
