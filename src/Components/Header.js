@@ -75,7 +75,9 @@ export const Title = ()=>{
           </div>
           <div className="relative">
               <AiOutlineShoppingCart className="text-3xl z-50"/>
+              <Link to={"/cart"}>
               <span className="rounded-full px-1 text-sm bg-red-800 text-white font-bold absolute -top-1 -right-2">{cartItems.length}</span>
+              </Link>
           </div>
         </div>
       </div>
