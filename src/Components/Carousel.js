@@ -4,9 +4,11 @@ import {useState, useEffect} from 'react'
 import { isMobile } from '../util/utilityFunctions'
 import { swiggy_api_URL, swiggy_mobile_api_URL } from '../config'
 import CarouselCards from './CarouselCards'
+import { useSelector } from 'react-redux'
 const Carousel = () => {
 
     const [restaurant, setRestaurant] = useState(null);
+    const hamburger = useSelector(store => store.hamburger.clicked)
     async function getRestaurant(){
         const data = await fetch(isMobile()? swiggy_mobile_api_URL: swiggy_api_URL);
         const json = await data.json();
@@ -44,7 +46,7 @@ const Carousel = () => {
   return (
     <>
         { !restaurant || !restaurant?.length === 0 ? ( <div></div>) : (
-            <div className='mt-28 lg:mt-40 relative max-w-fit lg:mx-auto mx-3'>
+            <div className={`mt-28 -z-10 lg:mt-40 relative max-w-fit lg:mx-auto mx-3`}>
                 <div className='flex justify-between'>
                     <div className='text-base font-semibold lg:text-xl lg:font-bold'>
                         Best Offer for you
