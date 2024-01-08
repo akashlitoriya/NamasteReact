@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { swiggy_menu_api_URL } from "../config";
 import { MENU_ITEM_TYPE_KEY } from "../config";
+import { getRestaurantData } from "../services/apiConnector";
 const useMenuItems = (resId) =>{
     const [menuItems, setmenuItems] = useState([]);
 
     async function getRestaurant(){
-        const data = await fetch(swiggy_menu_api_URL + resId);
-        const json = await data.json();
-        
+        //const data = await fetch(swiggy_menu_api_URL + resId);
+        const json = await getRestaurantData(swiggy_menu_api_URL + resId);
+        console.log(json);
         const menuItemsData = json?.data?.cards.find(x=> x.groupedCard)?.
                               groupedCard?.cardGroupMap?.REGULAR?.
                               cards?.map(x => x.card?.card)?.
@@ -20,6 +21,7 @@ const useMenuItems = (resId) =>{
             uniqueMenuItems.push(item);
           }
         })
+        //console.log(uniqueMenuItems);
         setmenuItems(uniqueMenuItems);
     }
 

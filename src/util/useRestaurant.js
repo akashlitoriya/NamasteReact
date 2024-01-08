@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { isMobile } from "./utilityFunctions";
 import { swiggy_api_URL, swiggy_mobile_api_URL } from "../config";
+import { getRestaurantData } from "../services/apiConnector";
 const useRestaurant = () =>{
     const [restaurant, setRestaurant] = useState(null);
     async function getRestaurant(){
-        const data = await fetch(
+        const url = 
             isMobile()? 
-            swiggy_mobile_api_URL: swiggy_api_URL
-          );
-          const json = await data.json();
+            swiggy_mobile_api_URL: swiggy_api_URL;
+         
+          const json = await getRestaurantData(url);
           
           // updated state variable restaurants with Swiggy API data
             let topRestaurant;

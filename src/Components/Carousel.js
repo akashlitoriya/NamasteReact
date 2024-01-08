@@ -5,13 +5,18 @@ import { isMobile } from '../util/utilityFunctions'
 import { swiggy_api_URL, swiggy_mobile_api_URL } from '../config'
 import CarouselCards from './CarouselCards'
 import { useSelector } from 'react-redux'
+import { getRestaurantData } from '../services/apiConnector'
 const Carousel = () => {
 
     const [restaurant, setRestaurant] = useState(null);
     const hamburger = useSelector(store => store.hamburger.clicked)
     async function getRestaurant(){
-        const data = await fetch(isMobile()? swiggy_mobile_api_URL: swiggy_api_URL);
-        const json = await data.json();
+        let url = swiggy_api_URL;
+        if(isMobile()){
+            url = swiggy_mobile_api_URL;
+        }
+
+        const json = await getRestaurantData(url);
           
           // updated state variable restaurants with Swiggy API data
         let carousel;

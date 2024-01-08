@@ -1,51 +1,4 @@
-// import { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { IMG_CDN_URL, swiggy_menu_api_URL } from "../config";
-// import { ShimmerUI } from "./ShimmerUI";
-// import { swiggy_api_URL } from "../config";
 
-// const RestaurantMenu = () => {
-//     //useParam is used to read the url
-
-//     const{resId} = useParams();
-//     const[ restaurant, setRestaurant] = useState(null);
-//     useEffect(() => {
-//         getRestaurantInfo();
-//     },[]);
-
-//     async function getRestaurantInfo(){
-//         const data = await fetch(swiggy_menu_api_URL + resId);
-//         const json = data.json();
-       
-//         setRestaurant(json.data);
-//         console.log(restaurant);
-//     }
-    
-//     if(!restaurant){
-//         return (
-//             <h1>Items not comes successfully</h1>
-//         )
-//     }
-// return (
-//     <div className = "menu">
-//         <div>
-//             <h1>Restaurant id : {resId}</h1>
-//             <h2>{restaurant?.name}</h2>
-//             <h3>{restaurant?.area}</h3>
-//             <h3>{restaurant?.city}</h3>
-//             <h3>{restaurant?.avgRating} stars</h3>
-//         </div>
-//         <div>
-//             <h1>Menu</h1>
-//             <ul>
-//                 {Object.values(restaurant?.menu?.items).map((item) => (
-//                     <li key = {item.id}>{item.name}</li>
-//                 ))}
-//             </ul>
-//         </div>
-//     </div>
-// )
-// }
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // import useParams for read `resId`
 import {
@@ -71,7 +24,7 @@ const RestaurantMenu = () => {
     const menuItems = useMenuItems(resId);
     const restaurantDetails = useRestaurantDetails(resId)[0];
 
-    console.log(restaurantDetails)
+    //console.log(restaurantDetails)
     const dispatch = useDispatch();
     const addFoodItems = (item) =>{
       dispatch(addItem(item));

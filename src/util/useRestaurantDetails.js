@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { swiggy_menu_api_URL } from "../config";
-
+import { getRestaurantData } from "../services/apiConnector";
 const useRestaurantDetails = (resId) =>{
     const [restaurantDetails, setRestaurantDetails] = useState([]);
 
     async function getRestaurant(){
-        const data = await fetch(swiggy_menu_api_URL + resId);
-        const json = await data.json();
+        //const data = await fetch(swiggy_menu_api_URL + resId);
+        const json = await getRestaurantData(swiggy_menu_api_URL + resId);
         
         const menuItemsData = json?.data?.cards.find(x=> x.groupedCard)?.
                               groupedCard?.cardGroupMap?.REGULAR?.

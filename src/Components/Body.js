@@ -9,7 +9,7 @@ import useOnline from "../util/useOnline";
 import UserContext from "../util/UserContext";
 import { ErrorPage } from "./ErrorPage"
 import Carousel from "./Carousel";
-
+import { getRestaurantData } from "../services/apiConnector";
 
 const BodyComponent= () =>{
   // useState: To create a state variable, searchText, allRestaurants and filteredRestaurants is local state variable
@@ -30,12 +30,13 @@ const BodyComponent= () =>{
   }
   async function getRestaurants() {
     // handle the error using try... catch
-    try {
-      const data = await fetch(
-        isMobile()? 
-        swiggy_mobile_api_URL: swiggy_api_URL
-      );
-      const json = await data.json();
+    
+        let url = swiggy_api_URL;
+        if(isMobile()){
+          url = swiggy_mobile_api_URL;
+        }
+        const json = await getRestaurantData(url);
+        
       
       // updated state variable restaurants with Swiggy API data
         let topRestaurant;
@@ -52,9 +53,7 @@ const BodyComponent= () =>{
       
       setAllRestaurants(topRestaurant);
       setFilteredRestaurants(topRestaurant);
-    } catch (error) {
-      console.log(error);
-    }
+    
   }
 
  
@@ -142,5 +141,5 @@ const BodyComponent= () =>{
     </>
   );
 };
-export default BodyComponent;
 
+export default BodyComponent;
